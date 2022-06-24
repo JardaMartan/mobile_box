@@ -27,6 +27,8 @@ router_ip = None # see TESTING in config.py and codec_requests()
 
 logger = logging.getLogger(__name__)
 
+BUTTON_COLORS = ["#40E0D0", "#FFBF00", "#DE3163"]
+
 MAX_MSG_SEQUENCE = 4096
 class CodecRPCRegister:
     """
@@ -252,6 +254,7 @@ def codec_requests(ws, interval = 10):
 
     _thread.start_new_thread(periodic_router_info, (rpc_reg, router_ip, ROUTER_CONFIG["username"], ROUTER_CONFIG["password"]))      
 
+    color_index = 0
     while True:
         # logger.info("Codec request: {}".format(dir(ws)))
         try:
@@ -259,6 +262,12 @@ def codec_requests(ws, interval = 10):
             # another option is a periodic query of codec status, registration request, etc.
             pass
             # rpc_reg.send_rpc_message("xGet", {"Path": ["Status", "SystemUnit"]}, codec_status)
+            # panel button color cycle
+            color = BUTTON_COLORS[color_index]
+            rpc_reg.send_rpc_message("xCommand/UserInterface/Extensions/Panel/Update", {"PanelId": "router_mgmt", "Color": color})
+            color_index += 1
+            if color_index >= len(BUTTON_COLORS):
+                color_index = 0
         except Exception as e:
             logger.error("RPC exception: {}".format(e))          
         time.sleep(interval)
@@ -291,7 +300,7 @@ def setup_router_panel(codec_rpc, panel = ROUTER_PANEL):
     try:
         logger.info("Setup router panel")
         codec_rpc.send_rpc_message("xCommand/UserInterface/Extensions/Panel/Save",
-            {"PanelId": "router", "body": ROUTER_PANEL}, show_router_panel)
+            {"PanelId": "router_mgmt", "body": ROUTER_PANEL}, show_router_panel)
     except Exception as e:
         logger.error("Panel setup exception: {}".format(e))
         

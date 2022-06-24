@@ -5,7 +5,7 @@ ROUTER_PANEL = """
   <Version>1.8</Version>
   <Panel>
     <Order>5</Order>
-    <PanelId>panel_1</PanelId>
+    <PanelId>router_mgmt</PanelId>
     <Origin>local</Origin>
     <Type>Home</Type>
     <Icon>Lightbulb</Icon>
