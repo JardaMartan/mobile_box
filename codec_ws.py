@@ -273,6 +273,7 @@ def show_router_panel(codec_rpc, *args):
     
     try:
         logger.info("Show router panel")
+        time.sleep(2) # safety delay after deployment
         codec_rpc.send_rpc_message("xCommand/UserInterface/Extensions/Panel/Open",
             {"PanelId": "router", "PageId": "page_rtr_info"})
     except Exception as e:
