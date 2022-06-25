@@ -1,11 +1,12 @@
 # Cisco router and codec integration
 This is an example of integration between IOS-XE router (tested on IR1101) and Cisco video codec (RoomKit mini).
-It was built for a ruggedized mobile video unit and provides router monitoring and control user interface on the Touch10
+The goal was to create a proof of concept and to learn and test the websocket and Restconf communication.
+The example was built for a ruggedized mobile video unit and provides router monitoring and control user interface on the Touch10
 of the video codec. This way the user of the video device can for example check the connection quality or
 switch from one type of connection to another. The example implements following features:
 * color change of the panel button
 * show command buttons for the HW/SW version and IP routing table
-* periodical update of router CPU and memory utilization
+* periodic update of router CPU and memory utilization
 
 Following technologies / techniques are used:
 * [websocket](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/api/collaboration-endpoint-software-api-transport.pdf) for two-way communication with the codec API. It provides real-time, easy-to use interface.
@@ -33,7 +34,7 @@ or other commands to the router.
 ### Restconf
 In order to create Restconf request [Cisco YANG Suite](https://developer.cisco.com/yangsuite/) is an essential tool
 (get it from [Github](https://github.com/CiscoDevNet/yangsuite)).
-YANG Suite can pull a list of YANG models from the router. Then the user can explore the YANG models and prepare the
+YANG Suite can pull a list of YANG models from the router. Then the user can explore the YANG models and prepare a
 Restconf query and its parameters. [Postman](https://www.postman.com/) can be then used for Restconf query testing. Some 
 examples of Restconf queries can be found [here](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/prog/configuration/171/b_171_programmability_cg/restconf_protocol.html)
 
@@ -107,11 +108,13 @@ TESTING = {
 2. get and install the [ioxclient](https://developer.cisco.com/docs/iox/#!iox-resource-downloads), documentation can 
 be found [here](https://developer.cisco.com/docs/iox/#!what-is-ioxclient).
 3. create **pkg** directory `mkdir pkg`
-4. use ioxclient to create IOx application `ioxclient docker package myapps/codec_ws pkg`
-5. use router's CLI or WebUI to deploy, activate and start the application
+4. use **ioxclient** to create IOx application `ioxclient docker package myapps/codec_ws pkg`
+5. use router's CLI or WebUI to deploy, activate and start the application  
+
+<img src="./images/webui_1.png" width="70%">  
 
 ### Running the application
-If all goes well, a **Router** button should apper and video codec touch interface and the Router Info panel
+If all goes well, a **Router** button should apper on video codec touch interface and the Router Info panel
 should automatically pop up.  
 
 <img src="./images/panel_2.png" width="70%">  
