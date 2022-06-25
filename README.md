@@ -73,6 +73,18 @@ netconf-yang
 restconf
 ```
 
+### Codec configuration
+Codec needs to be enabled for websocket communication:
+1. create a new user
+```
+xcommand UserManagement User Add Username: roomcontrol Passphrase: roomcontrol123 PassphraseChangeRequired: False Role: RoomControl Role: Admin Role: User Role: Integrator YourPassphrase: my_admin_passphrase
+```
+2. enable HTTP+HTTPS and websocket access (currently the example is using HTTP):
+```
+xconfiguration NetworkServices HTTP Mode: HTTP+HTTPS
+xconfiguration NetworkServices Websocket: FollowHTTPService
+```
+
 ## How to run the application
 This sample application can be run locally on a user's computer using just Python3 (preferably in [virtual environment](https://docs.python.org/3/tutorial/venv.html)) or as a Docker container. When it's packaged
 for IOx, it can be deployed and run at any IOx router which supports Docker applications.
