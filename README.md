@@ -18,7 +18,7 @@ Following technologies / techniques are used:
 ## How it works
 The mobile box consists of a Webex RoomKit mini or [Room Bar](https://projectworkplace.cisco.com/products/webex-room-bar), [Touch10](https://www.cisco.com/c/en/us/products/collateral/collaboration-endpoints/telepresence-touch/data_sheet_c78-646041.html) or [Navigator](https://projectworkplace.cisco.com/products/cisco-webex-navigator-table-version) and a LTE/Ethernet router.  
 
-<img src="./images/mobile_box_blend_1.png" width="70%">  
+<img src="./images/mobile_box_blend_1.jpg" width="70%">  
 
 The application is hosted as a Docker image on the IOS-XE router using [IOx](https://developer.cisco.com/site/iox/). 
 Following diagram shows the components and communication protocols:
