@@ -30,8 +30,42 @@ and for receiving notifications (feedback) from codec - for example touch interf
 **Restconf** is used to get an information from the router. It can also be used to send configuration changes
 or other commands to the router.
 
-## Restconf
-In order to create Restconf request [Cisco YANG Suite](https://developer.cisco.com/yangsuite/) is an essential tool.
-It can get a list of YANG models supported by the specific router type and IOS version. Then the user can explore the
-YANG models and prepare the Restconf query and its parameters. [Postman](https://www.postman.com/) can be then
-used for Restconf query testing. 
+### Restconf
+In order to create Restconf request [Cisco YANG Suite](https://developer.cisco.com/yangsuite/) is an essential tool
+(get it from [Github](https://github.com/CiscoDevNet/yangsuite)).
+YANG Suite can pull a list of YANG models from the router. Then the user can explore the YANG models and prepare the
+Restconf query and its parameters. [Postman](https://www.postman.com/) can be then used for Restconf query testing. Some 
+examples of Restconf queries can be found [here](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/prog/configuration/171/b_171_programmability_cg/restconf_protocol.html)
+
+### IOx
+[IOx](https://developer.cisco.com/site/iox/) is a virtualization environment and a set of management tools which allow to host [Cisco Guesthell](https://community.cisco.com/t5/developer-general-blogs/introducing-python-and-guest-shell-on-ios-xe-16-5/ba-p/3661394)
+applications or Docker containers on Cisco IOS-XE routers and switches. Documentation and examples can be found [here](https://developer.cisco.com/docs/iox/)
+
+### Router configuration
+Following is a router configuration for Restconf and IOx with Docker container **codec_ws**. The web server provides
+access to Restconf API and to [WebUI](https://www.cisco.com/c/en/us/td/docs/routers/access/4400/software/configuration/xe-16-9/isr4400swcfg-xe-16-9-book/using_the_management_interfaces.html) for IOx applications management.  
+```
+aaa authentication login default local
+aaa authorization exec default local 
+aaa authorization network default local 
+!
+username admin privilege 15 password 0 admin
+!
+interface VirtualPortGroup0
+ ip address 192.168.250.1 255.255.255.0
+ ip nat inside
+ ip virtual-reassembly
+!
+ip http server
+ip http authentication local
+ip http secure-server
+!
+app-hosting appid codec_ws
+ app-vnic gateway0 virtualportgroup 0 guest-interface 0
+  guest-ipaddress 192.168.250.2 netmask 255.255.255.0
+ app-default-gateway 192.168.250.1 guest-interface 0
+ name-server0 192.168.21.50
+ start
+netconf-yang
+restconf
+```
