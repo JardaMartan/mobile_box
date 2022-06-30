@@ -126,7 +126,7 @@ be found [here](https://developer.cisco.com/docs/iox/#!what-is-ioxclient).
 <img src="./images/webui_1.png" width="70%">  
 
 ### Running the application
-If all goes well, **Router** button should apper on video codec touch interface and **Router Info** panel
+If all goes well, **Router** button should appear on video codec touch interface and **Router Info** panel
 should automatically pop up.  
 
 <img src="./images/panel_2.png" width="70%">  
