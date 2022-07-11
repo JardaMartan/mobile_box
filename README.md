@@ -36,7 +36,7 @@ In order to create Restconf request [Cisco YANG Suite](https://developer.cisco.c
 (get it from [Github](https://github.com/CiscoDevNet/yangsuite)).
 YANG Suite can pull a list of YANG models from the router. Then the user can explore the YANG models and prepare a
 Restconf query and its parameters. [Postman](https://www.postman.com/) can be then used for Restconf query testing. Some 
-examples of Restconf queries can be found [here](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/prog/configuration/171/b_171_programmability_cg/restconf_protocol.html)
+examples of Restconf queries can be found [here](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/prog/configuration/171/b_171_programmability_cg/restconf_protocol.html).
 
 ### IOx
 [IOx](https://developer.cisco.com/site/iox/) is a virtualization environment and a set of management tools which allow to host [Cisco Guesthell](https://community.cisco.com/t5/developer-general-blogs/introducing-python-and-guest-shell-on-ios-xe-16-5/ba-p/3661394)
