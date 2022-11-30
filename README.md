@@ -112,7 +112,7 @@ TESTING = {
 ### Deploying to IOx
 1. Create Docker container as described in **Running locally as a Docker container**. If the device platform is Intel-based, use
 the **[Dockerfile_x86](./Dockerfile_x86), i.e. `docker build -f Dockerfile_x86 -t myapps/codec_ws`. For platform support and possible
-Dockerfile modification consult the [Minified docker base images from Cisco repository list](https://developer.cisco.com/docs/iox/#!docker-images-and-packages-repository/overview).  
+Dockerfile modification consult the [Minified docker base images from Cisco repository](https://developer.cisco.com/docs/iox/#!docker-images-and-packages-repository/overview) list.  
 The only configuration exception is **router_ip**.  
 The application can determine the router IP address automatically by getting the default gateway of the Docker (IOx)
 host. To use this feature, set the TESTING["active"] in config.py to **False**:
